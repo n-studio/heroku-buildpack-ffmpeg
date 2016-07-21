@@ -8,15 +8,17 @@ echo "-----> Install ffmpeg"
 BUILD_DIR=$1
 VENDOR_DIR="vendor"
 DOWNLOAD_URL="http://johnvansickle.com/ffmpeg/builds/ffmpeg-git-64bit-static.tar.xz"
+BIN_DIR="ffmpeg-git-64bit-static"
 
 echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
 
 cd $BUILD_DIR
 mkdir -p $VENDOR_DIR
 cd $VENDOR_DIR
-curl -L --silent $DOWNLOAD_URL | tar Jx
+mkdir $BIN_DIR
+curl -L --silent $DOWNLOAD_URL | tar jx -C $BIN_DIR --strip-components=1
 
 echo "exporting PATH and LIBRARY_PATH" | indent
 PROFILE_PATH="$BUILD_DIR/.profile.d/ffmpeg.sh"
 mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH="$PATH:$HOME/vendor/ffmpeg-git-64bit-static"' >> $PROFILE_PATH
+echo 'export PATH="$PATH:$HOME/vendor/$BIN_DIR"' >> $PROFILE_PATH
