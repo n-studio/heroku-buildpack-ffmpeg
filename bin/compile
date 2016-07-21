@@ -16,7 +16,7 @@ cd $BUILD_DIR
 mkdir -p $VENDOR_DIR
 cd $VENDOR_DIR
 mkdir -p $BIN_DIR
-curl -L --silent $DOWNLOAD_URL | tar jx -C $BIN_DIR --strip-components=1
+curl -L --silent $DOWNLOAD_URL | tar Jx -C $BIN_DIR --strip-components=1
 echo "Installed:"
 echo $(ls $BIN_DIR)
 
