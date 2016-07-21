@@ -15,8 +15,10 @@ echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
 cd $BUILD_DIR
 mkdir -p $VENDOR_DIR
 cd $VENDOR_DIR
-mkdir $BIN_DIR
+mkdir -p $BIN_DIR
 curl -L --silent $DOWNLOAD_URL | tar jx -C $BIN_DIR --strip-components=1
+echo "Installed:"
+echo $(ls $BIN_DIR)
 
 echo "exporting PATH and LIBRARY_PATH" | indent
 PROFILE_PATH="$BUILD_DIR/.profile.d/ffmpeg.sh"
